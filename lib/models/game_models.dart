@@ -65,7 +65,7 @@ enum Difficulty {
 }
 
 /// Bottom navigation bar tabs.
-enum ActiveTab { play, levels, shop, ranks }
+enum ActiveTab { play, levels, shop }
 
 /// Rewarded ad placements across gameplay, victory modal, and shop.
 enum RewardedAdTrigger {
@@ -514,22 +514,3 @@ const List<ShopCatalogItem> shopCatalogItems = [
     description: 'Instantly adds +10 Undo moves to your inventory',
   ),
 ];
-
-/// Leaderboard entry displayed in the Ranks screen.
-class RankCompetitor {
-  final String name;
-  final int level;
-  final int stars;
-  final bool isUser;
-  final int rank;
-  final String medal;
-
-  const RankCompetitor({
-    required this.name,
-    required this.level,
-    required this.stars,
-    required this.isUser,
-    required this.rank,
-    required this.medal,
-  });
-}

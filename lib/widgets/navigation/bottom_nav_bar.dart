@@ -3,7 +3,7 @@ import '../../models/game_models.dart';
 import '../../services/audio_service.dart';
 import '../../theme/app_colors.dart';
 
-/// Bottom tab bar linking Play, Levels, Shop, and Ranks screens.
+/// Bottom tab bar linking Play, Levels, and Shop screens.
 class BottomNavBar extends StatelessWidget {
   final ActiveTab activeTab;
   final ValueChanged<ActiveTab> onSelectTab;
@@ -38,12 +38,6 @@ class BottomNavBar extends StatelessWidget {
       label: 'Shop',
       icon: Icons.storefront_outlined,
       iconFilled: Icons.storefront,
-    ),
-    (
-      tab: ActiveTab.ranks,
-      label: 'Ranks',
-      icon: Icons.leaderboard_outlined,
-      iconFilled: Icons.leaderboard,
     ),
   ];
 

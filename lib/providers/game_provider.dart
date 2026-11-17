@@ -122,51 +122,6 @@ class GameProvider extends ChangeNotifier {
   int get starsEarned => calculateStars(_moves, parMoves: _levelData.parMoves);
   int get baseCoinsEarned => calculateBaseCoins(starsEarned);
 
-  List<RankCompetitor> get rankedLeaderboard {
-    final entries = <({String name, int level, int stars, bool isUser})>[
-      (name: 'Luna_SortMaster', level: 50, stars: 150, isUser: false),
-      (name: 'Alex_Flow', level: 48, stars: 141, isUser: false),
-      (name: 'PixelSamurai', level: 45, stars: 132, isUser: false),
-      (
-        name: '${_progress.profile.name} (You)',
-        level: _progress.maxUnlockedLevel,
-        stars: _progress.totalStars,
-        isUser: true,
-      ),
-      (name: 'EchoVial', level: 39, stars: 114, isUser: false),
-      (name: 'CyanSplash', level: 35, stars: 102, isUser: false),
-    ];
-
-    entries.sort((a, b) {
-      final starCmp = b.stars.compareTo(a.stars);
-      if (starCmp != 0) return starCmp;
-      return b.level.compareTo(a.level);
-    });
-
-    return List<RankCompetitor>.generate(entries.length, (idx) {
-      final entry = entries[idx];
-      final medal = idx == 0
-          ? '🥇'
-          : idx == 1
-              ? '🥈'
-              : idx == 2
-                  ? '🥉'
-                  : '#${idx + 1}';
-      return RankCompetitor(
-        name: entry.name,
-        level: entry.level,
-        stars: entry.stars,
-        isUser: entry.isUser,
-        rank: idx + 1,
-        medal: medal,
-      );
-    });
-  }
-
-  int get userGlobalRank {
-    return rankedLeaderboard.firstWhere((e) => e.isUser).rank;
-  }
-
   void _initLevelState(int levelNumber) {
     _levelData = getLevelData(levelNumber);
     _tubes = buildInitialTubes(_levelData);

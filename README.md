@@ -1,6 +1,6 @@
 # ColorFlow: Sort Master 🧪💧
 
-> **ColorFlow: Sort Master** is a tactile liquid color-sorting puzzle game built with **Flutter (3.24.5)** and **Dart**, featuring fluid pouring animations, 50 solvable levels, customizable vessel skins and liquid palettes, tactile synthesized audio & haptics, local persistence, global leaderboard ranks, and **Google AdMob** monetization with UMP GDPR consent.
+> **ColorFlow: Sort Master** is a tactile liquid color-sorting puzzle game built with **Flutter (3.24.5)** and **Dart**, featuring fluid pouring animations, 50 solvable levels, customizable vessel skins and liquid palettes, tactile synthesized audio & haptics, local persistence, and **Google AdMob** monetization with UMP GDPR consent.
 
 ---
 
@@ -16,7 +16,7 @@
   - **4 Vessel Skins:** *Classic Lab Vials*, *Crystal Flacons*, *Royal Golden Tubes*, and *Cyber Prism Vials*.
   - **3 Liquid Palettes:** *Vibrant Pastel Fluids*, *Neon Glow Fluids*, and *Ocean & Gems Palette*.
   - **Power-ups & Rewards:** *Undo Master (+10)* pack and *Free +100 Coins* rewarded chest.
-  - **Levels & Global Ranks:** 50-level progression grid (`150` total stars) and a dynamic Top-3 podium & leaderboard (`RanksScreen`).
+  - **50-Level Progression:** Handcrafted & generated progression grid (`150` total stars).
   - **Accessibility & Profile:** Color-blind symbol overlay mode, Sound FX & Haptics toggles, customizable player nickname and avatar, and progress reset in `SettingsModal` / `ProfileModal`.
 
 - **Synthesized Audio & Haptics:**
@@ -55,7 +55,7 @@ lib/
 │   ├── audio_service.dart     # just_audio WAV player & haptic feedback
 │   └── storage_service.dart   # SharedPreferences persistence
 ├── theme/                     # AppColors, AppTypography, AppShadows
-├── screens/                   # GameScreen, LevelsScreen, ShopScreen, RanksScreen
+├── screens/                   # GameScreen, LevelsScreen, ShopScreen
 └── widgets/                   # TestTube, LiquidLayer, FluidStream, HUD, Modals, Nav & Ads
 test/
 ├── game_engine_test.dart

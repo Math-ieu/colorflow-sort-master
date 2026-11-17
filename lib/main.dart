@@ -8,7 +8,6 @@ import 'models/game_models.dart';
 import 'providers/game_provider.dart';
 import 'screens/game_screen.dart';
 import 'screens/levels_screen.dart';
-import 'screens/ranks_screen.dart';
 import 'screens/shop_screen.dart';
 import 'services/ad_service.dart';
 import 'services/audio_service.dart';
@@ -152,8 +151,6 @@ class MainShell extends StatelessWidget {
         activeScreen = const LevelsScreen();
       case ActiveTab.shop:
         activeScreen = const ShopScreen();
-      case ActiveTab.ranks:
-        activeScreen = const RanksScreen();
     }
 
     return Scaffold(
@@ -203,7 +200,6 @@ class MainShell extends StatelessWidget {
                   maxLevel: provider.maxUnlockedLevel,
                   totalStars: provider.totalStars,
                   coins: provider.coins,
-                  globalRank: provider.userGlobalRank,
                   onUpdateProfile: provider.updateProfile,
                   onClose: provider.closeProfile,
                 ),

@@ -60,7 +60,6 @@ class ProfileModal extends StatefulWidget {
     required this.maxLevel,
     required this.totalStars,
     required this.coins,
-    this.globalRank = 6,
     required this.onUpdateProfile,
     required this.onClose,
   });
@@ -70,7 +69,6 @@ class ProfileModal extends StatefulWidget {
   final int maxLevel;
   final int totalStars;
   final int coins;
-  final int globalRank;
   final ValueChanged<PlayerProfile> onUpdateProfile;
   final VoidCallback onClose;
 
@@ -234,7 +232,7 @@ class _ProfileModalState extends State<ProfileModal> {
                           borderRadius: BorderRadius.circular(999),
                         ),
                         child: Text(
-                          'RANK #${widget.globalRank} GLOBAL MASTER',
+                          'LEVEL ${widget.maxLevel} • ${widget.totalStars} ★ FLOW MASTER',
                           style: const TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w900,

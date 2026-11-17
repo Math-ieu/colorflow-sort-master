@@ -93,7 +93,8 @@ void main() {
       expect(provider.undoCount, 2);
       expect(find.text('EMPTY'), findsOneWidget);
 
-      // 3. Navigate across Levels, Shop, Ranks tabs and back to Play
+      // 3. Navigate across Levels, Shop tabs and back to Play (Ranks removed)
+      expect(find.text('Ranks'), findsNothing);
       await tester.tap(find.text('Levels'));
       await tester.pump(const Duration(milliseconds: 200));
       expect(find.text('Select Level'), findsOneWidget);
@@ -114,18 +115,6 @@ void main() {
       );
       await tester.ensureVisible(undoMasterFinder);
       expect(undoMasterFinder, findsOneWidget);
-
-      await tester.tap(find.text('Ranks'));
-      await tester.pump(const Duration(milliseconds: 200));
-      expect(find.text('Global Ranks'), findsOneWidget);
-      expect(find.text('Luna_SortMaster'), findsWidgets);
-      final userRankFinder = find.textContaining('FlowMaster (You)');
-      await tester.scrollUntilVisible(
-        userRankFinder,
-        200,
-        scrollable: find.byType(Scrollable).first,
-      );
-      expect(userRankFinder, findsOneWidget);
 
       await tester.tap(find.text('Play'));
       await tester.pump(const Duration(milliseconds: 200));

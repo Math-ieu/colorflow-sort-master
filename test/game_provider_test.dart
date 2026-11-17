@@ -344,7 +344,7 @@ void main() {
     );
 
     test(
-      'settings, profile, tabs, leaderboard, timer, and resetAllProgress work correctly',
+      'settings, profile, tabs, timer, and resetAllProgress work correctly',
       () async {
         final storage = await StorageService.getInstance();
         final provider = _createProvider(storage: storage);
@@ -377,12 +377,6 @@ void main() {
           ),
         );
         expect(provider.profile.name, 'AquaWizard');
-        expect(
-          provider.rankedLeaderboard
-              .any((r) => r.isUser && r.name == 'AquaWizard (You)'),
-          isTrue,
-        );
-        expect(provider.userGlobalRank, greaterThanOrEqualTo(1));
         provider.closeProfile();
         expect(provider.isProfileOpen, isFalse);
 
