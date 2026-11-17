@@ -1,45 +1,50 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
 
-# dependencies
-node_modules/
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
 
-# IDE & AI Assistant
-.claude/
-.vscode/
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins*
+.pub-cache/
+.pub/
+build/
+/build/
 
-# Expo
-.expo/
-dist/
-web-build/
-expo-env.d.ts
+# Symbolication & Obfuscation related
+app.*.symbols
+app.*.map.json
 
-# Native
-.kotlin/
-*.orig.*
+# Android build & Gradle artifacts
+/android/app/debug
+/android/app/profile
+/android/app/release
+/android/.gradle/
+
+# Keystore & Signing Secrets (NEVER push to GitHub)
 *.jks
+*.keystore
 *.p8
 *.p12
 *.key
 *.mobileprovision
-
-# Metro
-.metro-health-check*
-
-# debug
-npm-debug.*
-yarn-debug.*
-yarn-error.*
-
-# macOS
-.DS_Store
-*.pem
-
-# local env files
+key.properties
+android/key.properties
+android/local.properties
 .env*.local
-
-# typescript
-*.tsbuildinfo
-
-# generated native folders
-/ios
-/android

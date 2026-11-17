@@ -1,0 +1,27 @@
+name: colorflow_sort_master
+description: "ColorFlow: Sort Master - Tactile liquid puzzle game with boosters, custom vessels, and rewards"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+  google_mobile_ads: ^5.3.1
+  provider: ^6.1.2
+  shared_preferences: ^2.2.2
+  just_audio: ^0.9.36
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icon.png
+    - assets/sounds/
