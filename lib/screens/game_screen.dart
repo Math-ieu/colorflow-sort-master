@@ -321,6 +321,7 @@ class _GameScreenState extends State<GameScreen> with TickerProviderStateMixin {
                   milestoneText: provider.liveMilestoneText,
                   coins: provider.coins,
                   isSoundEnabled: provider.settings.soundEnabled,
+                  avatarId: provider.profile.avatarIcon,
                   onToggleSound: provider.toggleSound,
                   onOpenSettings: provider.openSettings,
                   onOpenProfile: provider.openProfile,

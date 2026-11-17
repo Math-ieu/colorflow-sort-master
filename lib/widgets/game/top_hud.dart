@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../models/game_models.dart';
 import '../../services/audio_service.dart';
 import '../../theme/app_colors.dart';
 import '../common/coin_badge.dart';
@@ -11,6 +12,7 @@ class TopHUD extends StatelessWidget {
   final String milestoneText;
   final int coins;
   final bool isSoundEnabled;
+  final String avatarId;
   final VoidCallback onToggleSound;
   final VoidCallback? onOpenSettings;
   final VoidCallback? onOpenProfile;
@@ -22,6 +24,7 @@ class TopHUD extends StatelessWidget {
     required this.milestoneText,
     required this.coins,
     required this.isSoundEnabled,
+    this.avatarId = 'ColorWand',
     required this.onToggleSound,
     this.onOpenSettings,
     this.onOpenProfile,
@@ -29,6 +32,7 @@ class TopHUD extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AvatarOption activeAvatar = avatarOptionFor(avatarId);
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 10, 16, 12),
       child: Column(
@@ -135,11 +139,13 @@ class TopHUD extends StatelessWidget {
                   ),
                   const SizedBox(width: 6),
                   _CircleHudButton(
-                    icon: Icons.person,
-                    iconColor: Colors.white,
-                    iconSize: 16,
-                    backgroundColor: AppColors.coralDeep,
-                    borderColor: AppColors.coralDeep,
+                    key: const Key('profile_hud_button'),
+                    icon: activeAvatar.icon,
+                    iconColor: activeAvatar.color,
+                    iconSize: 18,
+                    backgroundColor: activeAvatar.color.withOpacity(0.12),
+                    borderColor: activeAvatar.color,
+                    borderWidth: 2,
                     onTap: () {
                       AudioService.maybeOf(context)?.playClick();
                       onOpenProfile?.call();
@@ -291,14 +297,17 @@ class _CircleHudButton extends StatelessWidget {
   final double iconSize;
   final Color backgroundColor;
   final Color borderColor;
+  final double borderWidth;
   final VoidCallback onTap;
 
   const _CircleHudButton({
+    super.key,
     required this.icon,
     required this.iconColor,
     required this.iconSize,
     required this.backgroundColor,
     required this.borderColor,
+    this.borderWidth = 1,
     required this.onTap,
   });
 
@@ -312,7 +321,7 @@ class _CircleHudButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: backgroundColor,
           shape: BoxShape.circle,
-          border: Border.all(color: borderColor, width: 1),
+          border: Border.all(color: borderColor, width: borderWidth),
           boxShadow: const [
             BoxShadow(
               color: Color(0x0D1E1E2E),

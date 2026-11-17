@@ -146,18 +146,22 @@ void main() {
       await tester.pump(const Duration(milliseconds: 200));
       expect(find.text('Game Settings'), findsNothing);
 
-      // 5. Open ProfileModal and save profile
-      await tester.tap(find.byIcon(Icons.person));
+      // 5. Open ProfileModal, switch avatar to Flash, and save profile
+      await tester.tap(find.byKey(const Key('profile_hud_button')));
       await tester.pump(const Duration(milliseconds: 200));
       expect(find.byType(ProfileModal), findsOneWidget);
       expect(find.text('Player Profile'), findsOneWidget);
       expect(find.text('DISPLAY NAME'), findsOneWidget);
+
+      await tester.tap(find.byIcon(Icons.bolt).first);
+      await tester.pump();
 
       final saveProfileBtn = find.text('Save Profile');
       await tester.ensureVisible(saveProfileBtn);
       await tester.tap(saveProfileBtn);
       await tester.pump(const Duration(milliseconds: 200));
       expect(find.text('Player Profile'), findsNothing);
+      expect(find.byIcon(Icons.bolt), findsOneWidget);
 
       // 6. Verify RewardedAdModal opens on +1 Tube in test mode & grants 4th tube
       final addTubeBtn = find.text('Tube');

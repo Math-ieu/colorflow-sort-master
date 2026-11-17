@@ -514,3 +514,56 @@ const List<ShopCatalogItem> shopCatalogItems = [
     description: 'Instantly adds +10 Undo moves to your inventory',
   ),
 ];
+
+/// Player avatar badge metadata shared between ProfileModal and TopHUD.
+class AvatarOption {
+  final String id;
+  final IconData icon;
+  final Color color;
+
+  const AvatarOption({
+    required this.id,
+    required this.icon,
+    required this.color,
+  });
+}
+
+const List<AvatarOption> playerAvatarOptions = [
+  AvatarOption(
+    id: 'ColorWand',
+    icon: Icons.auto_fix_high,
+    color: Color(0xFFAE2F34),
+  ),
+  AvatarOption(
+    id: 'Diamond',
+    icon: Icons.diamond,
+    color: Color(0xFF006A65),
+  ),
+  AvatarOption(
+    id: 'Trophy',
+    icon: Icons.emoji_events,
+    color: Color(0xFFD97706),
+  ),
+  AvatarOption(
+    id: 'Flash',
+    icon: Icons.bolt,
+    color: Color(0xFF7C3AED),
+  ),
+  AvatarOption(
+    id: 'Rocket',
+    icon: Icons.rocket_launch,
+    color: Color(0xFF059669),
+  ),
+  AvatarOption(
+    id: 'Sparkles',
+    icon: Icons.auto_awesome,
+    color: Color(0xFF9333EA),
+  ),
+];
+
+AvatarOption avatarOptionFor(String id) {
+  return playerAvatarOptions.firstWhere(
+    (option) => option.id == id,
+    orElse: () => playerAvatarOptions.first,
+  );
+}
