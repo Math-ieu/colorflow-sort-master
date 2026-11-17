@@ -161,7 +161,8 @@ class _TestTubeState extends State<TestTube> {
                 child: Opacity(
                   opacity: showIndicator ? 1.0 : 0.0,
                   child: SizedBox(
-                    height: 14,
+                    width: widget.width,
+                    height: 16,
                     child: Center(
                       child: completed
                           ? Container(

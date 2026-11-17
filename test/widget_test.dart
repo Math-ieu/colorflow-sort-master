@@ -62,6 +62,15 @@ void main() {
       expect(find.byType(AdBannerWidget), findsOneWidget);
       expect(find.text('Water Sort 3D • Free Gift'), findsOneWidget);
 
+      // Verify tubes are laid out side-by-side horizontally on the same row
+      final tube0Center = tester.getCenter(find.byType(TestTube).at(0));
+      final tube1Center = tester.getCenter(find.byType(TestTube).at(1));
+      final tube2Center = tester.getCenter(find.byType(TestTube).at(2));
+      expect(tube0Center.dx, lessThan(tube1Center.dx));
+      expect(tube1Center.dx, lessThan(tube2Center.dx));
+      expect((tube0Center.dy - tube1Center.dy).abs(), lessThan(1.0));
+      expect((tube1Center.dy - tube2Center.dy).abs(), lessThan(1.0));
+
       // 2. Test tube tap & pour animation (Tube 0 -> empty Tube 2)
       await tester.tap(find.byType(TestTube).at(0));
       await tester.pump();
