@@ -32,6 +32,7 @@ class AudioService {
 
   final Map<String, AudioPlayer> _players = {};
   final Map<String, Future<AudioPlayer?>> _loadingPlayers = {};
+  final Map<String, int> _playSequence = {};
 
   AudioService({
     bool soundEnabled = true,
@@ -70,6 +71,13 @@ class AudioService {
 
   void setSoundEnabled(bool v) {
     _soundEnabled = v;
+    if (!v) {
+      for (final player in _players.values) {
+        if (player.playing) {
+          player.pause().then((_) {}, onError: (_) {});
+        }
+      }
+    }
   }
 
   void setHapticsEnabled(bool v) {
@@ -113,10 +121,31 @@ class AudioService {
 
   Future<void> _playAsset(String assetPath) async {
     if (!_soundEnabled || !_canUsePlatform) return;
+    final int seq = (_playSequence[assetPath] ?? 0) + 1;
+    _playSequence[assetPath] = seq;
     try {
       final player = await _ensurePlayerLoaded(assetPath);
-      if (player == null || _disposed || !_soundEnabled) return;
+      if (player == null ||
+          _disposed ||
+          !_soundEnabled ||
+          _playSequence[assetPath] != seq) {
+        return;
+      }
+      // just_audio keeps `playing == true` after ProcessingState.completed
+      // (especially on Web), causing subsequent `play()` calls to no-op unless paused first.
+      if (player.playing) {
+        await player.pause();
+      }
+      if (_disposed || !_soundEnabled || _playSequence[assetPath] != seq) {
+        return;
+      }
+      if (player.processingState == ProcessingState.idle) {
+        await player.setAsset(assetPath);
+      }
       await player.seek(Duration.zero);
+      if (_disposed || !_soundEnabled || _playSequence[assetPath] != seq) {
+        return;
+      }
       // Do not await playback completion so rapid interactions remain responsive.
       player.play().then((_) {}, onError: (_) {});
     } catch (_) {
@@ -168,6 +197,7 @@ class AudioService {
     final players = List<AudioPlayer>.from(_players.values);
     _players.clear();
     _loadingPlayers.clear();
+    _playSequence.clear();
     for (final player in players) {
       try {
         await player.dispose();
